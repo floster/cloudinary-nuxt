@@ -1,8 +1,6 @@
 import { v2 as cloudinary } from "cloudinary";
 
-interface Results {
-  resources: [{ public_id: string }];
-}
+import type { Results } from "@/types";
 
 export default defineEventHandler(async (event) => {
   const env = useRuntimeConfig(event);
@@ -15,9 +13,10 @@ export default defineEventHandler(async (event) => {
 
   try {
     const data: Results = await cloudinary.search
-      .expression("")
+      .with_field("context")
+      .expression("resource_type:image")
       .sort_by("public_id", "desc")
-      .max_results(12)
+      .max_results(4)
       .execute();
 
     return { ...data };
