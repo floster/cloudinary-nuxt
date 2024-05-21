@@ -20,7 +20,7 @@ const refreshPics = () => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-y-8 items-center py-5">
+  <div class="w-full flex flex-col gap-y-8 items-center">
     <PageHeader title="Cloudinary Image Gallery" />
     <!-- Cloudinary upload widget -->
     <CldUploadWidget
@@ -39,11 +39,11 @@ const refreshPics = () => {
     <!-- /Cloudinary upload widget -->
 
     <!-- Cloudinary photos -->
-    <section class="grid grid-cols-4 gap-2 w-3/5 m-auto border-sky">
+    <section class="w-full grid grid-cols-4 gap-2 m-auto border-sky">
       <div
         v-for="picture in data?.resources"
         :key="picture.asset_id"
-        class="cursor-pointer hover:transform hover:scale-105 transition-transform"
+        class="cursor-pointer hover:scale-105 transition-transform duration-200 overflow-hidden rounded-lg"
       >
         <CldImage
           width="320"
