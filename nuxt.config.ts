@@ -1,7 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxtjs/cloudinary", "@nuxtjs/tailwindcss", "@nuxt/eslint"],
+  modules: [
+    "@nuxtjs/cloudinary",
+    "@nuxtjs/tailwindcss",
+    "@nuxt/eslint",
+    "@nuxt/test-utils/module",
+  ],
   cloudinary: {
     cloudName: "dr2lnj2sw",
   },
