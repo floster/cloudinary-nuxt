@@ -31,29 +31,31 @@ const blurSlider = ref(0);
 const blurComputed = computed(() => blurSlider.value * 30);
 
 const attributes = reactive({
-  width: "640",
-  height: "640",
-  crop: "fill",
-  src: publicId,
-  alt: "photo for editing",
-  opacity: 100,
-  blur: blurComputed,
-  overlays: [
-    {
-      position: {
-        gravity: "north",
-        y: 60,
-        x: 0,
+  effect: {
+    width: "640",
+    height: "640",
+    crop: "fill",
+    src: publicId,
+    alt: "photo for editing",
+    opacity: 100,
+    blur: blurComputed,
+    overlays: [
+      {
+        position: {
+          gravity: "north",
+          y: 60,
+          x: 0,
+        },
+        text: {
+          color: "#0092d1",
+          fontFamily: "Source Sans Pro",
+          fontSize: 100,
+          fontWeight: "400",
+          text: "your text here",
+        },
       },
-      text: {
-        color: "#0092d1",
-        fontFamily: "Source Sans Pro",
-        fontSize: 100,
-        fontWeight: "400",
-        text: "your text here",
-      },
-    },
-  ],
+    ],
+  },
 });
 </script>
 
@@ -76,12 +78,12 @@ const attributes = reactive({
           class="flex flex-col gap-y-3 p-3 rounded border-purple-200 border-2"
         >
           <!-- prettier-ignore -->
-          <input v-model="attributes.overlays[0].text.text" type="text" class="w-full input">
+          <input v-model="attributes.effect.overlays[0].text.text" type="text" class="w-full input">
           <div class="grid grid-cols-3 gap-x-3">
             <!-- prettier-ignore -->
-            <input v-model="attributes.overlays[0].text.fontSize" type="number" class="input-number">
+            <input v-model="attributes.effect.overlays[0].text.fontSize" type="number" class="input-number">
             <select
-              v-model="attributes.overlays[0].text.fontWeight"
+              v-model="attributes.effect.overlays[0].text.fontWeight"
               class="input"
             >
               <option
@@ -93,11 +95,11 @@ const attributes = reactive({
               </option>
             </select>
             <!-- prettier-ignore -->
-            <input v-model="attributes.overlays[0].text.color" type="color" class="w-full">
+            <input v-model="attributes.effect.overlays[0].text.color" type="color" class="w-full">
           </div>
           <div class="grid grid-cols-2 gap-x-3">
             <select
-              v-model="attributes.overlays[0].position.gravity"
+              v-model="attributes.effect.overlays[0].position.gravity"
               class="input"
             >
               <option
@@ -110,15 +112,15 @@ const attributes = reactive({
             </select>
             <div class="flex gap-x-3">
               <!-- prettier-ignore -->
-              <input v-model="attributes.overlays[0].position.x" type="number" class="input-number w-1/2">
+              <input v-model="attributes.effect.overlays[0].position.x" type="number" class="input-number w-1/2">
               <!-- prettier-ignore -->
-              <input v-model="attributes.overlays[0].position.y" type="number" class="input-number w-1/2">
+              <input v-model="attributes.effect.overlays[0].position.y" type="number" class="input-number w-1/2">
             </div>
           </div>
         </div>
         <!-- /text -->
         <!-- opacity -->
-        <AppSlider v-model="attributes.opacity" class="border-sky-200"
+        <AppSlider v-model="attributes.effect.opacity" class="border-sky-200"
           >Opacity</AppSlider
         >
         <!-- /opacity -->
@@ -149,7 +151,7 @@ const attributes = reactive({
       <!-- /editor -->
 
       <!-- preview -->
-      <CldImage v-if="publicId" v-bind="attributes" />
+      <CldImage v-if="publicId" v-bind="attributes.effect" />
       <!-- /preview -->
     </div>
   </section>
